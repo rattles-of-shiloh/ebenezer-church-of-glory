@@ -262,7 +262,43 @@
             </nav>
         </div>
     </header>
+<script>
+        const mobileMenuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        const subDropdownMenu = document.querySelector('.dropdown-menu');
+        
+        // Find the Ministries link regardless of what its href is
+        const ministriesDropdownTrigger = document.querySelector('nav ul li:has(.dropdown-menu) > a, nav ul li a[href*="ministries"]');
 
+        // 1. Toggle the entire main menu (Home, About, Ministries, Schedule) ONLY on phone layouts
+        mobileMenuToggle.addEventListener('click', (e) => {
+            navMenu.classList.toggle('active');
+            e.stopPropagation();
+        });
+
+        // 2. Handle sub-ministry layout presentation selectively on mobile viewports
+        if (ministriesDropdownTrigger) {
+            ministriesDropdownTrigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); // Stop jumping immediately to the section on phone screens
+                    e.stopPropagation();
+                    subDropdownMenu.classList.toggle('open'); // Toggle dropdown visibility smoothly
+                }
+            });
+        }
+
+        // 3. Close the entire mobile menu container instantly if a direct section link is triggered
+        const structuralLinks = document.querySelectorAll('#nav-menu a');
+        structuralLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // If it's the mobile dropdown trigger itself, let the script above handle it
+                if (window.innerWidth <= 768 && link !== ministriesDropdownTrigger) {
+                    navMenu.classList.remove('active');
+                    subDropdownMenu.classList.remove('open');
+                }
+            });
+        });
+    </script>
     <!-- Hero Showcase Section -->
     <div class="hero" id="home">
         <h1>Welcome to Ebenezer Church of Glory</h1>
