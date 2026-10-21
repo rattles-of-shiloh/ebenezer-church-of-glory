@@ -121,25 +121,30 @@
             }
         }
 
-        /* --- MOBILE PHONE STYLES ONLY --- */
+          /* --- MOBILE PHONE STYLES ONLY --- */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex; /* Show the 3 lines button */
             }
 
             nav {
-                display: none; /* Hide main links cleanly by default */
+                display: none; /* Hidden by default */
                 position: absolute;
-                top: 100%;
+                top: 70px; /* Adjust based on your header height */
                 left: 0;
                 width: 100%;
-                background-color: #fff;
+                background-color: #ffffff;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.2s ease;
             }
 
-            /* Display main menu when active class is toggled */
+            /* Display main menu explicitly when active class is triggered */
             nav.active {
-                display: block;
+                display: block !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
             }
 
             nav ul {
@@ -150,11 +155,13 @@
 
             nav ul li {
                 width: 100%;
+                text-align: center;
             }
 
             nav ul li a {
                 padding: 15px 20px;
                 border-bottom: 1px solid #eee;
+                display: block;
             }
 
             /* Hide the sub-ministries list on mobile completely by default */
@@ -164,15 +171,14 @@
                 box-shadow: none;
                 background-color: var(--light-bg);
                 width: 100%;
-                padding-left: 20px;
+                padding: 0;
             }
 
             /* Open mobile sub-ministries list when toggled via script */
             .dropdown-menu.open {
-                display: block;
+                display: block !important;
             }
         }
-
         /* --- CONTENT SECTION LAYOUTS --- */
         .hero {
             background: linear-gradient(rgba(26, 37, 47, 0.7), rgba(26, 37, 47, 0.7)), url('https://unsplash.com') no-repeat center center/cover;
