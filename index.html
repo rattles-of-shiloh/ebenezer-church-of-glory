@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ebenezer Church of Glory</title>
     <style>
-        /* Modern Clean Wix-Inspired Styles */
+        /* Modern Clean Wix-Inspired Global Styles */
         :root {
             --primary-color: #1a252f;
             --accent-color: #b89742;
@@ -26,7 +26,7 @@
             line-height: 1.6;
         }
 
-        /* Wix-Style Navigation Bar */
+        /* --- LAPTOP NAVIGATION BAR (DEFAULT) --- */
         header {
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -52,6 +52,27 @@
             letter-spacing: 1px;
         }
 
+        /* Mobile menu button hidden entirely on Laptops */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -74,7 +95,7 @@
             color: var(--accent-color);
         }
 
-        /* Dropdown Menu styling */
+        /* Dropdown styling for Laptop mouse hover */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -82,24 +103,77 @@
             left: 0;
             background-color: #fff;
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            min-width: 200px;
+            min-width: 220px;
             border-top: 3px solid var(--accent-color);
-        }
-
-        .dropdown-menu li {
-            width: 100%;
+            list-style: none;
         }
 
         .dropdown-menu li a {
             padding: 12px 20px;
             border-bottom: 1px solid #eee;
+            font-size: 15px;
         }
 
-        nav ul li:hover .dropdown-menu {
-            display: block;
+        /* Show hover dropdown only on laptop screens */
+        @media (min-width: 769px) {
+            nav ul li:hover .dropdown-menu {
+                display: block;
+            }
         }
 
-        /* Hero Section */
+        /* --- MOBILE PHONE STYLES ONLY --- */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex; /* Show the 3 lines button */
+            }
+
+            nav {
+                display: none; /* Hide main links cleanly by default */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+            /* Display main menu when active class is toggled */
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                padding: 15px 20px;
+                border-bottom: 1px solid #eee;
+            }
+
+            /* Hide the sub-ministries list on mobile completely by default */
+            .dropdown-menu {
+                display: none;
+                position: static;
+                box-shadow: none;
+                background-color: var(--light-bg);
+                width: 100%;
+                padding-left: 20px;
+            }
+
+            /* Open mobile sub-ministries list when toggled via script */
+            .dropdown-menu.open {
+                display: block;
+            }
+        }
+
+        /* --- CONTENT SECTION LAYOUTS --- */
         .hero {
             background: linear-gradient(rgba(26, 37, 47, 0.7), rgba(26, 37, 47, 0.7)), url('https://unsplash.com') no-repeat center center/cover;
             height: 70vh;
@@ -113,14 +187,14 @@
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 42px;
             margin-bottom: 15px;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 25px;
-            max-width: 600px;
+            max-width: 700px;
         }
 
         .btn {
@@ -130,65 +204,34 @@
             text-decoration: none;
             font-weight: bold;
             border-radius: 4px;
-            transition: background 0.3s;
         }
 
-        .btn:hover {
-            background-color: #967a33;
-        }
-
-        /* Section Layouts */
         section {
-            padding: 80px 20px;
+            padding: 60px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 36px;
+            font-size: 32px;
             margin-bottom: 40px;
-            position: relative;
             color: var(--primary-color);
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent-color);
-            margin: 10px auto 0;
-        }
-
-        /* Welcome Details Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .card {
             background: var(--light-bg);
-            padding: 30px;
+            padding: 25px;
             border-radius: 8px;
             text-align: center;
-            border-bottom: 4px solid transparent;
-            transition: all 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-bottom-color: var(--accent-color);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        /* Ministries Section Grid */
         .ministry-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -206,50 +249,38 @@
         .ministry-card h4 {
             color: var(--accent-color);
             margin-bottom: 10px;
-            font-size: 18px;
         }
 
-        /* Footer */
         footer {
             background-color: var(--primary-color);
             color: #fff;
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-
-        /* Responsive Settings Menu */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-            }
-            nav ul {
-                margin-top: 20px;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-            .dropdown-menu {
-                position: static;
-                box-shadow: none;
-                background-color: var(--light-bg);
-            }
+            padding: 30px 20px;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header & Wix Dropdown Navigation -->
+    <!-- Header Navigation Layout -->
     <header>
         <div class="nav-container">
-            <div class="logo">Ebenezer Church Of Glory-ECG</div>
-            <nav>
+            <div class="logo">Ebenezer Church</div>
+            
+            <!-- Three vertical/horizontal bars button for mobile screens -->
+            <button class="menu-toggle" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="nav-links-container">
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li>
-                        <a href="#ministries">Ministries ▾</a>
-                        <ul class="dropdown-menu">
+                        <a href="#ministries" id="ministries-toggle-link">Ministries ▾</a>
+                        <ul class="dropdown-menu" id="mobile-dropdown-target">
                             <li><a href="#rattles">Rattles of Shiloh</a></li>
                             <li><a href="#ela">Ela</a></li>
                             <li><a href="#asaph">Tribal of Asaph</a></li>
@@ -262,43 +293,6 @@
             </nav>
         </div>
     </header>
-<script>
-        const mobileMenuToggle = document.getElementById('mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
-        const subDropdownMenu = document.querySelector('.dropdown-menu');
-        
-        // Find the Ministries link regardless of what its href is
-        const ministriesDropdownTrigger = document.querySelector('nav ul li:has(.dropdown-menu) > a, nav ul li a[href*="ministries"]');
-
-        // 1. Toggle the entire main menu (Home, About, Ministries, Schedule) ONLY on phone layouts
-        mobileMenuToggle.addEventListener('click', (e) => {
-            navMenu.classList.toggle('active');
-            e.stopPropagation();
-        });
-
-        // 2. Handle sub-ministry layout presentation selectively on mobile viewports
-        if (ministriesDropdownTrigger) {
-            ministriesDropdownTrigger.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault(); // Stop jumping immediately to the section on phone screens
-                    e.stopPropagation();
-                    subDropdownMenu.classList.toggle('open'); // Toggle dropdown visibility smoothly
-                }
-            });
-        }
-
-        // 3. Close the entire mobile menu container instantly if a direct section link is triggered
-        const structuralLinks = document.querySelectorAll('#nav-menu a');
-        structuralLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                // If it's the mobile dropdown trigger itself, let the script above handle it
-                if (window.innerWidth <= 768 && link !== ministriesDropdownTrigger) {
-                    navMenu.classList.remove('active');
-                    subDropdownMenu.classList.remove('open');
-                }
-            });
-        });
-    </script>
     <!-- Hero Showcase Section -->
     <div class="hero" id="home">
         <h1>Welcome to Ebenezer Church of Glory</h1>
