@@ -134,8 +134,9 @@
                 display: flex; /* Show the 3 lines button */
             }
 
-            nav {
-                display: none; /* Hidden by default layout */
+            /* Hide the container cleanly */
+            #nav-links-container {
+                display: none; 
                 position: absolute;
                 top: 100%;
                 left: 0;
@@ -144,8 +145,8 @@
                 box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             }
 
-            /* Display main menu explicitly when active class is triggered */
-            nav.active {
+            /* Force display on the actual element container when active */
+            #nav-links-container.active {
                 display: block !important;
             }
 
@@ -166,9 +167,9 @@
                 display: block;
             }
 
-            /* Hide the sub-ministries list on mobile completely by default */
+            /* Hide the sub-ministries dropdown list completely on mobile */
             .dropdown-menu {
-                display: none;
+                display: none !important;
                 position: static;
                 box-shadow: none;
                 background-color: var(--light-bg);
@@ -176,7 +177,7 @@
                 padding: 0;
             }
 
-            /* Open mobile sub-ministries list when toggled via script */
+            /* Reveal dropdown menu list items when open class is active */
             .dropdown-menu.open {
                 display: block !important;
             }
