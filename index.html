@@ -26,13 +26,13 @@
             line-height: 1.6;
         }
 
-        /* --- LAPTOP NAVIGATION BAR (DEFAULT) --- */
+        /* --- NAVIGATION BAR --- */
         header {
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 9999; /* Force header to stay above all elements */
         }
 
         .nav-container {
@@ -42,6 +42,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
+            position: relative;
         }
 
         .logo {
@@ -52,7 +53,7 @@
             letter-spacing: 1px;
         }
 
-        /* Mobile menu button hidden entirely on Laptops */
+        /* Mobile menu button toggle - Added pointer controls */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -62,7 +63,9 @@
             background: transparent;
             border: none;
             cursor: pointer;
-            z-index: 1001;
+            position: relative;
+            z-index: 10000; /* Ensure button sits above navbar container */
+            padding: 0;
         }
 
         .menu-toggle span {
@@ -71,6 +74,10 @@
             height: 3px;
             background-color: var(--primary-color);
             border-radius: 3px;
+        }
+
+        nav {
+            z-index: 9998;
         }
 
         nav ul {
@@ -121,30 +128,25 @@
             }
         }
 
-          /* --- MOBILE PHONE STYLES ONLY --- */
+        /* --- MOBILE PHONE STYLES ONLY --- */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex; /* Show the 3 lines button */
             }
 
             nav {
-                display: none; /* Hidden by default */
+                display: none; /* Hidden by default layout */
                 position: absolute;
-                top: 70px; /* Adjust based on your header height */
+                top: 100%;
                 left: 0;
                 width: 100%;
                 background-color: #ffffff;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.2s ease;
             }
 
             /* Display main menu explicitly when active class is triggered */
             nav.active {
                 display: block !important;
-                opacity: 1 !important;
-                pointer-events: auto !important;
             }
 
             nav ul {
@@ -179,6 +181,7 @@
                 display: block !important;
             }
         }
+
         /* --- CONTENT SECTION LAYOUTS --- */
         .hero {
             background: linear-gradient(rgba(26, 37, 47, 0.7), rgba(26, 37, 47, 0.7)), url('https://unsplash.com') no-repeat center center/cover;
@@ -190,6 +193,8 @@
             text-align: center;
             color: #fff;
             padding: 20px;
+            position: relative;
+            z-index: 1; /* Pushes content layer under navbar layers */
         }
 
         .hero h1 {
@@ -271,10 +276,10 @@
     <!-- Header Navigation Layout -->
     <header>
         <div class="nav-container">
-            <div class="logo">Ebenezer Church</div>
+            <div class="logo">Ebenezer Church Of Glory-ECG</div>
             
             <!-- Three vertical/horizontal bars button for mobile screens -->
-            <button class="menu-toggle" id="mobile-menu-btn">
+            <button class="menu-toggle" id="mobile-menu-btn" type="button">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -299,10 +304,11 @@
             </nav>
         </div>
     </header>
-    <!-- Hero Showcase Section -->
+
+    <!-- Hero Showcase Header Banner Section -->
     <div class="hero" id="home">
         <h1>Welcome to Ebenezer Church of Glory</h1>
-        <p>1 st Samuel 7:12...He named it EBENEZER saying "Thus far the lord has helped us".</p>
+        <p>1st Samuel 7:12... He named it EBENEZER saying "Thus far the Lord has helped us."</p>
         <a href="#schedule" class="btn">Plan Your Visit</a>
     </div>
 
@@ -312,11 +318,11 @@
         <div class="grid">
             <div class="card">
                 <h3>Our Location</h3>
-                <p>Conveniently located along <strong>Kenyatta Road Basil Street Next To Heshima court</strong>. Drop by to fellowship with us in person.</p>
+                <p> Fellowship with us along <strong>Basil Street Next To Heshima Court Kenyatta Road</strong>.</p>
             </div>
             <div class="card">
-                <h3>Our Identity</h3>
-                <p>We are a vibrant, spirit-led congregation committed to raising dedicated disciples and impacting our community.</p>
+                <h3>Our Vision</h3>
+                <p>A place of worship, transformation, and covenant community growing together in faith.</p>
             </div>
         </div>
     </section>
