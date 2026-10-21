@@ -1,25 +1,330 @@
-# ⛪ Ebenezer Church of Glory Website
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebenezer Church of Glory</title>
+    <style>
+        /* Modern Clean Wix-Inspired Styles */
+        :root {
+            --primary-color: #1a252f;
+            --accent-color: #b89742;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+        }
 
-Welcome to the official repository for the **Ebenezer Church of Glory** website. This site serves as our digital front door to welcome visitors, share service times, archive sermons, and connect our community. The website is hosted for free using **GitHub Pages**.
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-## 🌐 Live Website
-👉 **[Insert your GitHub Pages link here, e.g., https://github.io]**
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
 
-## 🗓️ Service Times & Weekly Schedule
-* **Sundays:** 9:30 Am - 13:30 PM (Main Service)
-* **Mondays:** 5:30 AM – 6:30 AM (Morning Devotion)
-* **Tuesdays:** 5:30 AM – 6:30 AM (Morning Devotion)
-* **Wednesdays:** 5:30 AM – 6:30 AM  (UNFALLING LOVE)
-* **Thursdays :** 6:30 PM - 7:45 PM (Mid-Week Fellowship)    
+        /* Wix-Style Navigation Bar */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
 
-## 📍 Location
-Basal Street Next TO Heshima Court Kenyatta Road
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-## 📂 Project Structure
-* `index.html` - Homepage (Wix-style layout featuring welcome banners, service times, and quick links)
-* `about.html` - Our Mission, Beliefs, and Pastoral Leadership Team
-* `sermons.html` - Audio and video archives of past messages
-* `events.html` - Upcoming church-wide calendars and ministry announcements
-* `contact.html` - Map details, office hours, and contact forms
-* `/assets` - Media assets including logos, graphics, and stylesheets (CSS)
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Dropdown Menu styling */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            min-width: 200px;
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .dropdown-menu li {
+            width: 100%;
+        }
+
+        .dropdown-menu li a {
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav ul li:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 37, 47, 0.7), rgba(26, 37, 47, 0.7)), url('https://unsplash.com') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 25px;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #967a33;
+        }
+
+        /* Section Layouts */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+        }
+
+        /* Welcome Details Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* Ministries Section Grid */
+        .ministry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .ministry-card {
+            background: #fff;
+            border: 1px solid #e1e1e1;
+            padding: 25px;
+            text-align: center;
+            border-radius: 6px;
+        }
+
+        .ministry-card h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        /* Responsive Settings Menu */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 20px;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                background-color: var(--light-bg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Wix Dropdown Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">Ebenezer Church</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li>
+                        <a href="#ministries">Ministries ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#rattles">Rattles of Shiloh</a></li>
+                            <li><a href="#ela">Ela</a></li>
+                            <li><a href="#asaph">Tribal of Asaph</a></li>
+                            <li><a href="#zoe">Zoe Covenant</a></li>
+                            <li><a href="#rebbeca">Rebbeca</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#schedule">Schedule</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <div class="hero" id="home">
+        <h1>Welcome to Ebenezer Church of Glory</h1>
+        <p>A place of worship, transformation, and covenant community. Join us as we grow together in faith.</p>
+        <a href="#schedule" class="btn">Plan Your Visit</a>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Who We Are</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Our Location</h3>
+                <p>Conveniently located along <strong>Kenyatta Road</strong>. Drop by to fellowship with us in person.</p>
+            </div>
+            <div class="card">
+                <h3>Our Identity</h3>
+                <p>We are a vibrant, spirit-led congregation committed to raising dedicated disciples and impacting our community.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ministries Layout Section -->
+    <section id="ministries" style="background-color: var(--light-bg); max-width: 100%;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <h2 class="section-title">Our Ministries</h2>
+            <div class="ministry-grid">
+                <div class="ministry-card" id="rattles">
+                    <h4>Rattles of Shiloh</h4>
+                    <p>Our dynamic dancing and creative praise team ministry spreading joy through movement.</p>
+                </div>
+                <div class="ministry-card" id="ela">
+                    <h4>Ela</h4>
+                    <p>The sanctuary praise, worship, and vocal team leading us into deep encounters.</p>
+                </div>
+                <div class="ministry-card" id="asaph">
+                    <h4>Tribal of Asaph</h4>
+                    <p>Our dedicated instrumentalists, musicians, and choir organizing prophetic melodies.</p>
+                </div>
+                <div class="ministry-card" id="zoe">
+                    <h4>Zoe Covenant</h4>
+                    <p>Focusing on foundational fellowship, covenant growth, and small-group discipleship.</p>
+                </div>
+                <div class="ministry-card" id="rebbeca">
+                    <h4>Rebbeca</h4>
+                    <p>The thriving women's fellowship providing empowerment, community, and support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule">
+        <h2 class="section-title">Weekly Schedule</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Sunday</h3>
+                <p><strong>10:00 AM</strong> — Main Worship & Word Service</p>
+            </div>
+            <div class="card">
+                <h3>Monday</h3>
+                <p><strong>6:45 PM – 8:20 PM</strong> — Intercession & Prayer Service</p>
+            </div>
+            <div class="card">
+                <h3>Wednesday</h3>
