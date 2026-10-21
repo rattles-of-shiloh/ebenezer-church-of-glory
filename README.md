@@ -11,7 +11,7 @@ Welcome to the official repository for the **Ebenezer Church of Glory** website.
 * **Tuesdays:** 5:30 AM – 6:30 AM (Morning Devotion)
 * **Wednesdays:** 5:30 AM – 6:30 AM  (UNFALLING LOVE)
 * **Thursdays :** 6:30 PM - 7:45 PM (Mid-Week Fellowship)    
-* **Saturdays:** 3:00 PM – 6:00 PM (Youth & Ministry Practice)
+
 
 ## 📍 Location
 Basal Street Next TO Heshima Court Kenyatta Road
